@@ -1,0 +1,2589 @@
+@charset "utf-8";
+
+// mixin ブレイクポイント；990,767
+// $pc:1440px;
+$tab:1190px;
+$sp:768px;
+
+@mixin tab  {
+    @media (max-width:($tab))  {
+        @content;
+    }
+}
+@mixin sp  {
+    @media (max-width:($sp))  {
+        @content;
+    }
+}
+
+// 変数
+// カラー
+$color-black: #333333;
+$color-white: #FFFFFF;
+$color-red: #C7254E;
+$color-red-btn-hover: #D84940;
+$color-red-btn: #da6b64;
+$color-yellow: #EBB94D;
+$color-blue: #016EA9;
+
+/* --------------------------------------------------------
+    共通パーツ
+  -------------------------------------------------------- */
+  body {
+    color: $color-black;
+    font-family: "Hiragino Kaku Gothic Pro","Menlo","ms pgothic",sans-serif;
+    letter-spacing: 1.5px;
+}
+.container{
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+}
+.section{
+    &__ttl{
+        margin: 0 auto;
+        width: 73.5%;
+        padding: 35px 0 25px ;
+        position: relative;
+        text-align: center;
+        @include tab{
+            width: 95%;
+        }
+        @include sp{
+            width: 100%;
+            padding: 5px 20px;
+        }
+        &::before, &::after{
+            content: '';
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            @include sp{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &::before{
+            border-left: solid 4px $color-yellow;
+            border-top: solid 4px $color-yellow;
+            top: 0;
+            left: 0;
+            @include sp{
+                margin: 0;
+            }
+        }
+        &::after{
+            border-right: solid 4px $color-yellow;
+            border-bottom: solid 4px $color-yellow;
+            bottom: 0;
+            right: 0;
+            @include sp{
+                margin: 0;
+            }
+        }
+    }
+    &__box{
+        margin: 20px 0 10px;
+        font-size: 28px;
+        font-weight: bolder;
+        line-height: 1.5;
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            line-height: 2.2;
+        }
+    }
+}
+
+/* --------------------------------------------------------
+  各セクションのCSS
+  -------------------------------------------------------- */
+// start header
+.header{
+        position: fixed;/* bodyに対しての絶対位置指定 */
+        top: 0;
+        z-index: 999;
+        width: 100%;
+        margin: 0 auto;
+        background: $color-white;
+    &__inner {
+        max-width: 1170px;
+        width: 100%;
+        height: 75px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;// 文字真ん中
+        @include tab{
+            padding: 0 10px;
+        }
+        @include sp{
+            height: 62px;
+            padding: 0 0 0 10px;
+        }
+    }
+    &__link{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        @include sp{
+            flex-direction: column;
+            align-items: flex-start;
+
+        }
+    }
+    &__logo{
+        vertical-align: baseline;
+        @include sp{
+            width: 90px;
+            height: 31px;
+        }
+    }
+    &__ttl{
+        font-size: 14px;
+        color: $color-black;
+        // 文字上下余白削除
+        margin-bottom: calc( ((14px * 1.7) - 14px) / -2);
+        font-weight: bolder;
+        line-height: 2.5;
+        margin-left: 5px;
+        @include tab{
+            font-size: 12px;
+        }
+        @include sp{
+            font-size: 10px;
+        }
+    }
+    &__btn{
+        width: 27%;
+        padding: 11px 14px;
+        text-align: center;
+        background-color: $color-red-btn;
+        border-radius: 25px;
+        display: block;
+        transition: all 0.6s ease;
+        @include tab{
+            width: 35%;
+        }
+        &:hover{
+            cursor: pointer;
+            background-color: $color-red-btn-hover;
+        }
+        &-link{
+            font-size: 14px;
+            line-height: 1.5;
+            color: $color-white;
+            letter-spacing: 1.75px;
+            @include tab{
+                font-size: 12px;
+            }
+        }
+        @include sp{
+            display: none;
+        }
+    }
+    &__sp-btn{
+        display: none;
+        @include sp{
+            background-color: $color-red-btn;
+            height: 62px;
+            padding: 9px 11px;
+            display: block;
+            transition: all 0.6s ease;
+            &:hover{
+                cursor: pointer;
+                text-decoration: underline;
+                background-color: $color-red-btn-hover;
+            }
+            &-box{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: $color-white;
+            }
+            &-img{
+                width: 20px;
+                height: auto;
+                margin-bottom: 2px;
+            }
+            &-link{
+                font-size: 12px;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+//mv
+.mv{
+    width: 100%;
+    height: 499px;
+    margin-top: 75px;
+    background-image: url(../img/mv/main.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: table;
+    @include tab{
+        height: 500px;
+    }
+    @include sp{
+        height: 312px;
+        margin-top: 62px;
+        padding: 0 15px;
+    }
+    &__wrap{
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    &__top{
+        font-size: 28px;
+        line-height: 1.6;
+        font-weight: bolder;
+        margin-bottom: 10px;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+    }
+    &__img{
+        max-width: 317px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 30px;
+        @include sp{
+            width: 90%;
+        }
+    }
+    &__bottom{
+        font-size: 20px;
+        line-height: 1.1;
+        font-weight: bolder;
+        @include sp{
+            font-size: 15px;
+        }
+    }
+}
+// start date
+.date{
+    background-color: $color-yellow;
+    text-align: center;
+    padding: 30px 0;
+    @include sp{
+        padding: 15px 0;
+    }
+    &__top{
+        font-size: 20px;
+        line-height: 1.6;
+        color: $color-white;
+        margin-bottom: 10px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 16px;
+        }
+        @include sp{
+            font-size: 15px;
+        }
+    }
+    &__small{
+        font-family: "Menlo";
+        display: inline;
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: bolder;
+        color: $color-red;
+        background-color: #F9F2F4;
+        padding: 2px 4px;
+        border-radius: 5px;
+        letter-spacing: 2px;
+        @include tab{
+            font-size: 14px;
+        }
+    }
+    &__btn{
+        display:block;
+        width: 88%;
+        text-align: center;
+        border-radius: 50px;
+        margin: 45px auto;
+        padding: 30px 20px;
+        background-color: $color-red-btn;
+        transition: all 0.6s ease;
+        @include tab{
+            margin: 10px auto;
+        }
+        @include sp{
+            margin: 25px 20px 40px;
+            padding: 15px 20px;
+        }
+        &:hover{
+            background-color: $color-red-btn-hover;
+        }
+        &-link{
+            color: $color-white;
+            font-size: 28px;
+            line-height: 1.5;
+            font-weight: bolder;
+            @include tab{
+                font-size: 18px;
+            }
+            & br{
+                display: none;
+                @include sp{
+                    display: inline;
+                }
+            }
+        }
+    }
+    &__txt{
+        color: $color-white;
+        font-size: 21px;
+        font-weight: bolder;
+        margin-bottom: 44px;
+        @include tab{
+            font-size: 18px;
+            margin: 25px 0 30px;
+
+        }
+        @include sp{
+            font-size: 15px;
+            max-width: calc(100% - 20px);
+            margin: 20px auto;
+            line-height: 1.7;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+    }
+    &__list{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 19px;
+    }
+    &__item{
+        font-size: 12px;
+        line-height: 1.5;
+        background-color: #1877F2;
+        color: $color-white;
+        padding: 2px 5px;
+        border-radius: 4px;
+        text-align: center;
+        margin-top: 5px;
+        &:nth-of-type(1){
+            background-color: #1b95e0;
+            &:hover{
+                background-color: #0C7ABF;
+            }
+        }
+        @include tab{
+            font-size: 12px;
+        }
+        &:nth-of-type(2){
+            margin: 5px 9px 0;
+        }
+    }
+}
+// start mv
+.intr{
+    background-image: url(../img/bg/introbottom.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    padding: 40px 10px 6%;
+    position: relative;
+    height: 587px;
+    @include sp{
+        background-position: bottom;
+        background-size: contain;
+        padding: 25px 0px 47px;
+        height: auto;
+    }
+    &::before {
+        content: "ABOUT";
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        -ms-transform: translate(-50%,0);
+        -webkit-transform: translate(-50%,0);
+        transform: translate(-50%,0);
+        color: #fff;
+        background: $color-yellow;
+        font-size: 14px;
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        border-radius: 50%;
+        text-align: center;
+        @include sp{
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 12px;
+            bottom: -30px;
+            // center
+
+            }
+    }
+    &__top{
+        padding: 0 10px;
+    }
+    &__wrap{
+        margin: 40px 0;
+        @include sp{
+            display: none;
+        }
+    }
+    &__sp{
+        display: none;
+        @include sp{
+            display: block;
+            padding: 25px 0px;
+        }
+        &-txt{
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            &-span{
+                font-weight: bolder;
+                background: linear-gradient(transparent 70%, #ebb94d 70%);
+            }
+            &:nth-of-type(2){
+                margin-bottom: 35px;
+            }
+        }
+    }
+    &__txt{
+        font-size: 20px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+        @include tab{
+            font-size: 16px;
+        }
+        @include sp{
+            font-size: 15px;
+
+        }
+        & br{
+            @include sp{
+                display: none;
+            }
+        }
+        &-span{
+            font-weight: bolder;
+            background: linear-gradient(transparent 70%, #ebb94d 70%);
+        }
+    }
+}
+// start about
+.about{
+    background-color: #FEF5E0;
+    padding: 84px 30px 40px;
+    @include sp{
+        padding: 57px 10px 40px;
+    }
+    &__ttl{
+        margin: 0 auto;
+        width: 73.5%;
+        padding: 15px 30px ;
+        position: relative;
+        text-align: center;
+        @include tab{
+            width: 95%;
+        }
+        @include sp{
+            width: 100%;
+            padding: 10px;
+        }
+        &::before, &::after{
+            content: '';
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            @include sp{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &::before{
+            border-left: solid 4px $color-yellow;
+            border-top: solid 4px $color-yellow;
+            top: 0;
+            left: 0;
+            @include tab{
+                // margin: 0 20px;
+            }
+            @include sp{
+                margin: 0;
+            }
+        }
+        &::after{
+            border-right: solid 4px $color-yellow;
+            border-bottom: solid 4px $color-yellow;
+            bottom: 0;
+            right: 0;
+            @include tab{
+                // margin: 0 20px;
+            }
+            @include sp{
+                margin: 0;
+            }
+
+        }
+    }
+    &__box{
+        margin: 20px 0 10px;
+        font-size: 28px;
+        font-weight: bolder;
+        line-height: 1.5;
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            line-height: 2.2;
+
+        }
+
+
+    }
+    &__txt{
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: bolder;
+    text-align: center;
+    margin: 40px 0 0;
+    & br{
+        display: none;
+        @include sp{
+            display: inline;
+        }
+    }
+    @include tab{
+        font-size: 16px;
+    }
+    @include sp{
+        margin: 15px 0 10px;
+    }
+    }
+    &__wrap{
+        padding: 0 10px;
+    }
+    &__content{
+    padding: 0 10px;
+    background-color: $color-white;
+    border: 2px solid $color-yellow;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    padding: 30px 20px;
+    border-radius: 5px;
+    margin: 30px 0;
+        &-ttl{
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: bolder;
+            margin-bottom: 24px;
+            @include tab{
+                font-size: 16px;
+            }
+        }
+    @include tab{
+        padding: 30px 0 40px;
+    }
+    @include sp{
+        padding: 10px;
+    }
+    }
+    &__list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+        &-ttl{
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            @include tab{
+                font-size: 15px;
+            }
+            & br{
+                display: none;
+                @include sp{
+                    display: inline;
+                }
+            }
+        }
+
+    }
+    &__item{
+        padding: 10px;
+        // 画像と文字揃えるために
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        &:not(:nth-of-type(5)){
+            margin-right: 8px;
+            @include tab{
+                margin: 0px;
+            }
+        }
+        @include sp{
+            flex-wrap: wrap;
+            padding: 5px;
+        }
+    }
+    &__img{
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        @include sp{
+            height: 30px;
+        }
+    }
+    &__desc{
+        font-size: 12px;
+        line-height: 1.6;
+        margin-top: 10px;
+        vertical-align: top;
+        @include sp{
+            font-size: 10px;
+            margin: 10px 0 10px;
+
+        }
+    }
+}
+// start step
+.step{
+    background-image: url(../img/bg/aboutsecondbg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 0;
+    width: 100%;
+    height: auto;
+    @include sp{
+        background-image: url(../img/bg/aboutsecondbgsp.jpg);
+        padding: 30px 30px 50px;
+    }
+    &__ttl{
+        font-size: 28px;
+        line-height: 1.5;
+        color: $color-white;
+        text-align: center;
+        margin: 20px 0 24px;
+        font-weight: bolder;
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        &-small{
+            font-size: 20px;
+            line-height: 1.5;
+            color: $color-white;
+            text-align: center;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            @include tab{
+                line-height: 1.4;
+                font-size: 16px;
+            }
+            @include sp{
+                font-size: 13px;
+                line-height: 1.4;
+
+            }
+            & br{
+                display: none;
+                @include sp{
+                    display: inline;
+                }
+            }
+        }
+        &-yellow{
+            color: $color-yellow;
+        }
+    }
+    &__list{
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        @include tab{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        @include sp{
+            margin-top: 30px;
+
+        }
+    }
+    &__item{
+        width: 32%;
+        background-color: $color-white;
+        border-radius: 5px;
+        padding: 30px 30px 20px;
+        text-align: center;
+        margin: 0 10px;
+        @include tab{
+            width: 37%;
+            margin: 0 0 20px;
+        }
+        @include sp{
+            width: 100%;
+            padding: 15px 50px;
+            margin: 0 0 15px;
+            &:nth-of-type(2){
+                margin: 0 1.5%;
+                @include tab{
+                    margin: 0 0 20px;
+                }
+                @include sp{
+                    margin: 0 0 15px;
+                }
+            }
+        }
+    }
+    &__top{
+        background-color: $color-yellow;
+        color: $color-white;
+        font-size: 16px;
+        line-height: 1.5;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        @include sp{
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    }
+    &__txt{
+        font-size: 14px;
+        line-height: 1.5;
+        color: $color-black;
+        margin-bottom: 15px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 12px;
+        }
+        @include sp{
+            margin-bottom: 5px;
+        }
+    }
+    &__desc{
+        font-size: 16px;
+        line-height: 1.5;
+        color: $color-black;
+        margin-bottom: 15px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 14px;
+            margin-bottom: 10px;
+
+        }
+        @include sp{
+            font-size: 12px;
+            margin: 0;
+        }
+    }
+}
+// start skill
+.skill{
+    background-color: $color-blue;
+    padding: 40px 0;
+    text-align: center;
+    @include sp{
+        padding: 20px 0;
+    }
+    &-txt{
+        font-size: 20px;
+        line-height: 1.6;
+        color: $color-white;
+        font-weight: bolder;
+        @include tab{
+            font-size: 16px;
+        }
+        @include sp{
+            font-size: 12px;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+    }
+    &-yellow{
+        color: $color-yellow;
+    }
+}
+// start study
+.study{
+    padding: 40px 0;
+    @include tab{
+        padding: 40px 0 70px;
+
+    }
+    @include sp{
+        padding: 20px 0;
+    }
+    &__ttl{
+        text-align: center;
+        font-size: 28px;
+        line-height: 1.5;
+        font-weight: bolder;
+        margin: 20px 0 35px;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+        }
+        &-small{
+            font-size: 16px;
+            @include tab{
+                font-size: 14px;
+            }
+        }
+    }
+    &__txt{
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.7;
+        @include tab{
+            font-size: 16px;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+        @include sp{
+            padding: 10px;
+        }
+    }
+    &__list{
+        width: 80%;
+        display: flex;
+        margin: 50px auto;
+        justify-content: center;
+        @include tab{
+            margin: 50px auto 60px;
+        }
+        @include sp{
+            margin: 10px auto 15px;
+        }
+    }
+    &__item{
+        margin: 0 1.5%;
+    }
+    &__img{
+        max-width: 180px;
+        width: 100%;
+        height: auto;
+        @include sp{
+            width: 80%;
+        }
+    }
+    &__small{
+        font-size: 16px;
+        line-height: 1.6;
+        font-weight: bolder;
+        text-align: center;
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            font-size: 12px;
+        }
+    }
+}
+// start learn
+.learn{
+    background-color: #FEF5E0;
+    padding: 40px 0;
+    @include tab{
+        padding: 30px 50px;
+    }
+    @include sp{
+        padding: 30px 0px;
+    }
+    &__wrap{
+        padding: 0 10px;
+    }
+    &__ttl{
+        margin: 0 auto;
+        width: 73.5%;
+        padding: 15px 30px ;
+        position: relative;
+        text-align: center;
+        @include tab{
+            width: 95%;
+        }
+        @include sp{
+            width: 100%;
+            padding: 10px;
+        }
+        &::before, &::after{
+            content: '';
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            @include sp{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &::before{
+            border-left: solid 4px $color-yellow;
+            border-top: solid 4px $color-yellow;
+            top: 0;
+            left: 0;
+            @include sp{
+                margin: 0;
+            }
+        }
+        &::after{
+            border-right: solid 4px $color-yellow;
+            border-bottom: solid 4px $color-yellow;
+            bottom: 0;
+            right: 0;
+            @include sp{
+                margin: 0;
+            }
+        }
+    }
+    &__box{
+        // margin: 20px 0 10px;
+        font-size: 28px;
+        font-weight: bolder;
+        line-height: 1.5;
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+        @include tab{
+            font-size: 24px;
+            margin: 0;
+
+        }
+        @include sp{
+            font-size: 18px;
+            margin: 15px auto;
+            width: 87%;
+        }
+    }
+    &__span{
+        font-size: 20px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 16px;
+        }
+        @include sp{
+            font-size: 15px;
+        }
+    }
+    &__msg{
+        // margin-top: 10px;
+    }
+    &__list{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        @include tab{
+        }
+        @include sp{
+            flex-direction: column;
+            margin-top: 20px;
+        }
+    }
+    &__item{
+        width: 33%;
+        padding: 0 15px;
+        // text-align: center;
+        @include tab{
+            // max-width: 300px;
+            width: 100%;
+            // margin-bottom: 10px;
+        }
+        @include sp{
+            margin-bottom: 10px;
+
+        }
+    }
+    &__first{
+        background-image: url(../img/img/learnfromfreelancer.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 180px;
+        width: 100%;
+        @include tab{
+            height: 180px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        @include sp{
+            height: 120px;
+            max-width: 100%;
+            margin: 0 auto;
+            }
+    }
+    &__second{
+        background-image: url(../img/img/learnfromprojects.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 180px;
+        width: 100%;
+        @include tab{
+            height: 180px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        @include sp{
+            height: 120px;
+            max-width: 100%;
+            margin: 0 auto;
+            }
+    }
+    &__third{
+        background-image: url(../img/img/actuallyfree.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 180px;
+        width: 100%;
+        @include tab{
+            height: 180px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        @include sp{
+            height: 120px;
+            max-width: 100%;
+            margin: 0 auto;
+            }
+    }
+
+    &__top{
+        font-size: 20px;
+        line-height: 1.6;
+        color: $color-yellow;
+        margin: 8px 0;
+        font-weight: bolder;
+        @include tab{
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+    &__txt{
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 8px 0;
+        @include tab{
+            padding: 0 20px;
+            font-size: 14px;
+            text-align: left;
+        }
+        @include sp{
+            font-size: 12px;
+        }
+    }
+    &__add{
+        background-color: $color-white;
+        padding: 40px 20px;
+        text-align: center;
+        margin: 20px 15px 40px;        
+        border: 2px solid $color-yellow;
+        border-radius: 5px;
+        @include sp{
+            padding: 10px;
+            margin: 15px 20px;
+
+        }
+        &-ttl{
+            font-size: 28px;
+            line-height: 1.65;
+            color: $color-yellow;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            @include tab{
+                font-size: 24px;
+                line-height: 1;
+
+            }
+            @include sp{
+                font-size: 18px;
+                line-height: 1.65;
+
+            }
+        }
+        &-large{
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            @include tab{
+                font-size: 16px;
+            }
+            @include sp{
+                font-size: 15px;
+            }
+            & br{
+                display: none;
+                @include sp{
+                    display: inline;
+                }
+            }
+        }
+        &-txt{
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            @include tab{
+                font-size: 14px;
+                line-height: 1.45;
+
+            }
+            @include sp{
+                font-size: 10px;
+
+            }
+            & br{
+                @include sp{
+                    display: none;
+                }
+            }
+        }
+    }
+    &__small{
+        width: 83%;
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: center;
+        margin: 0 auto 10px;
+        @include tab{
+            width: 100%;
+            font-size: 12px;
+        }
+        @include sp{
+            padding: 0 10px;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+    }
+}
+// start mem
+.mem{
+    width: 100%;
+    background-image: url(../img/bg/teacherbg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px 0;
+    @include tab{
+        padding: 50px 50px 73px;
+    }
+    @include sp{
+        padding: 20px 15px;
+        background-image: url(../img/bg/teacherbgsp.jpg);
+    }
+    &__ttl{
+        font-size: 28px;
+        line-height: 1.4;
+        color: $color-white;
+        font-weight: bolder;
+        text-align: center;
+        margin: 40px 0 34px;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            margin: 44px 0 10px;
+        }
+    }
+    &__txt{
+        font-size: 16px;
+        line-height: 1.6;
+        color: $color-white;
+        font-weight: bolder;
+        text-align: center;
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            font-size: 12px;
+            margin-top: 40px;
+            line-height: 1.7;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+    }
+    &__list{
+        display: flex;
+        justify-content: center;
+        margin-top: 46px;
+        @include sp{
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+        }
+    }
+    &__item{
+        width: 33%;
+        margin: 0 15px;
+        height: auto;
+        @include tab{
+            // margin: 20px 0 0;
+        }
+        @include sp{
+            width: 100%;
+            margin: 30px 0 0;
+        }
+    }
+    &__photo{
+        text-align: center;
+        margin-bottom: -35px;
+    }
+    &__img{
+        max-width: 198px;
+        border-radius: 50%;
+        @include sp{
+            max-width: 120px;
+            height: auto;
+        }
+    }
+    &__wrap{
+        padding: 40px;
+        border: 3px solid $color-white;
+        font-size: 16px;
+        line-height: 1.3;
+        color: $color-white;
+        height: auto;
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            font-size: 12px;
+            padding: 40px 10px 10px;
+        }
+    }
+    &__tch{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    &__name{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    &__msg{
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+
+}
+.qa{
+    &__top{
+        background-color: $color-yellow;
+        text-align: center;
+        padding: 40px 0;
+        position: relative;
+        @include tab{
+            padding: 50px;
+        }
+        @include sp{
+            padding: 20px 10px;
+        }
+     &-ttl{
+         width: 80px;
+         height: 80px;
+         background-color: $color-white;
+         color: $color-yellow;
+         border-radius: 50%;
+         font-size: 14px;
+         line-height: 80px;
+         margin: 0 auto;
+         @include sp{
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            }
+        }
+     &::after{
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -24px;
+        left: 0;
+        width: 0px;
+        height: 0px;
+        margin: auto;
+        border-style: solid;
+        border-color: $color-yellow transparent transparent transparent;
+        border-width: 25px 25px 0 25px;
+        @include sp{
+            bottom: -14px;
+        }
+        }
+        &-txt{
+            margin: 0 auto;
+            width: 70%;
+            font-size: 28px;
+            font-weight: bolder;
+            line-height: 1.5;
+            padding: 15px 10px;
+            position: relative;
+            text-align: center;
+            color: $color-white;
+            @include tab{
+                font-size: 18px;
+                width: 100%;
+            }
+            @include sp{
+                font-size: 14px;
+                padding: 10px;
+                line-height: 2.8;
+            }
+
+            &::before, &::after{
+                content: '';
+                width: 30px;
+                height: 30px;
+                position: absolute;
+            }
+            &::before{
+                border-left: solid 4px $color-white;
+                border-top: solid 4px $color-white;
+                top: 0;
+                left: 0;
+            }
+            &::after{
+                border-right: solid 4px $color-white;
+                border-bottom: solid 4px $color-white;
+                bottom: 0;
+                right: 0;
+            }
+        }
+    }
+    &__wrap{
+        width: 70%;
+        margin: 0 auto;
+        padding: 40px 0 0;
+        @include sp{
+            width: 100%;
+            padding: 20px 0 0;
+        }
+    }
+     &__ttl{
+         font-size: 28px;
+         line-height: 1.6;
+         text-align: center;
+         margin-bottom: 10px;
+         font-weight: bolder;
+         @include tab{
+             font-size: 24px;
+         }
+         @include sp{
+             font-size: 18px;
+             margin-bottom: 10px;
+
+         }
+     }
+     &__txt{
+         font-size: 16px;
+         line-height: 1.6;
+         text-align: center;
+         margin-bottom: 10px;
+         font-weight: bolder;
+         margin-bottom: 30px;
+         @include tab{
+             font-size: 14px;
+         }
+         @include sp{
+             font-size: 12px;
+             margin-bottom: 35px;
+         }
+     }
+     &__small{
+         font-size: 14px;
+         line-height: 1.5;
+         text-align: center;
+         margin-bottom: 10px;
+         @include tab{
+             font-size: 10px;
+             line-height: 1.3;
+
+         }
+     }
+    &__list{
+        margin-bottom: 40px;
+    }
+    &__item{
+        width: 64%;
+        display: flex;
+        padding: 20px 0;
+        margin: 0 auto;
+        @include tab{
+            width: 100%;
+            padding: 20px 20px 10px;
+        }
+        @include sp{
+            padding: 20px 10px;
+            width: 100%;
+
+        }
+    }
+    &__photo{
+         width: 37%;
+         @include tab{
+            width: 22%;
+         }
+    }
+    &__img{
+         max-width: 297px;
+         height: auto;
+         width: 100%;
+         border:  solid $color-yellow;
+    }
+    &__content{
+        width: 70%;
+        line-height: 1.6;
+        color: #777777;
+        margin-left: 30px;
+        padding: 15px 0 10px;
+        @include sp{
+            width: 58%;
+            margin-left: 15px;
+            padding: 0;
+            line-height: 1.8;
+        }
+    }
+    &__msg{
+        font-size: 18px;
+        margin-bottom: 8px;
+        @include sp{
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        &-small{
+            font-style: italic;
+            font-size: 15px;
+            text-decoration: underline;
+            @include sp{
+                font-size: 10px;
+                margin: 0 auto;
+            }
+        }
+    }
+
+}
+// star class
+.class{
+    width: 100%;
+    background-image: url(../img/bg/classbg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px 0;
+    text-align: center;
+    @include sp{
+        background-image: url(../img/bg/classbgsp.jpg);
+        padding: 20px 0;
+    }
+    &__ttl{
+        font-size: 28px;
+        line-height: 1.4;
+        color: $color-white;
+        margin: 20px 0 10px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+        }
+    }
+    &__txt{
+        font-size: 16px;
+        line-height: 1.6;
+        color: $color-white;
+        margin-bottom: 10px;
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            font-size: 12px;
+        }
+    }
+    &__content{
+        display: flex;
+        justify-content: center;
+        padding: 40px 0;
+        @include tab{
+            padding: 30px 10%;
+        }
+        @include sp{
+            flex-direction: column;
+            padding: 20px 15px;
+        }
+    }
+    &__list{
+        background-color: $color-white;
+        border: 2px solid $color-blue;
+        border-radius: 5px;
+        margin: 0 15px;
+        height: 100%;
+        width: 32%;
+        @include sp{
+            width: 100%;
+            margin: 15px auto 0;
+        }
+    }
+    &__item{
+        &-ttl{
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: bolder;
+            color: $color-white;
+            background: $color-blue;
+            @include tab{
+                font-size: 16px;
+            }
+            @include sp{
+                font-size: 15px;
+                padding: 15px;
+                margin-bottom: 15px;
+
+            }
+        }
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.6;
+        font-weight: bolder;
+        &:not(:nth-of-type(1)){
+            border-top: dotted 1px #e5e5e5;
+        }
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    }
+}
+// start price
+.price{
+    width: 100%;
+    background-color: $color-blue;
+    padding: 40px 5px;
+    text-align: center;
+    @include sp{
+        padding: 20px 0;
+
+    }
+    &__txt{
+        font-size: 20px;
+        line-height: 1.6;
+        color: $color-white;
+        font-weight: bolder;
+        @include tab{
+            font-size: 16px;
+        }
+        @include sp{
+            font-size: 15px;
+        }
+    }
+}
+// start flow
+.flow{
+    padding: 40px 20px;
+    @include tab{
+        padding: 20px 40px;
+    }
+    @include sp{
+        padding: 20px 15px 80px;
+    }
+
+    &__top{
+        text-align: center;
+        &-ttl{
+            font-size: 28px;
+            line-height: 1.4;
+            color: $color-black;
+            font-weight: bolder;
+            margin: 20px 0 15px;
+            @include tab{
+                font-size: 24px;
+            }
+            @include sp{
+                font-size: 18px;
+                margin: 20px 0 40px;
+            }
+        }
+        &-img{
+            width: 85%;
+            margin: 40px 0;
+            @include tab{
+                width: 95%;
+            }
+            @include sp{
+                display: none;
+            }
+        }
+    }
+    &__list{
+        @include tab{
+            width: 95%;
+            margin: 0 auto;
+        }
+        @include sp{
+            display: none;
+        }
+    }
+    &__item{
+        display: flex;
+        background-color: #FEF5E0;
+        padding: 10px 35px;
+        border-radius: 10px;
+
+    }
+    &__photo{
+        padding: 20px;
+        text-align: center;
+        min-width: 200px;
+    }
+    &__img{
+        &-txt{
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: bolder;
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+    &__txt{
+        font-size: 16px;
+        line-height: 1.6;
+        font-weight: bolder;
+        margin: 20px 0;
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            margin: 0;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        &-small{
+            font-size: 14px;
+            line-height: 1.6;
+            @include tab{
+                font-size: 12px;
+            }
+            @include sp{
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &__btm-line{
+        width: 65%;
+        margin: 0 auto;
+    }
+    &__btm-img{
+        max-width: 762px;
+        width: 100%;
+    }
+    &__accordion{
+        &-container{
+            display: none;
+                @include sp{
+                    display: inline;
+                }
+            }
+        &-container &-title {
+            position: relative;
+            margin: 0;
+            cursor: pointer;
+            padding: 10px 15px;
+            margin-top: 5px;
+            // icon設定
+            &::after {
+              content: "";
+              position: absolute;
+              right: 20px;
+              top: 38%;
+              transition: all 0.2s ease-in-out;
+              display: block;
+              width: 10px;
+              height: 10px;
+              border-top: solid 5px $color-black;
+              border-right: solid 5px $color-black;
+              -webkit-transform: rotate(135deg);
+              transform: rotate(135deg);
+            }
+            &.open::after {
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+                top: 45%;
+            }
+        }
+        &-title{
+            display: flex;
+            padding: 10px 15px;
+            background-color: #FEF5E0;
+            align-items: center;
+            &:hover{
+                text-decoration: underline;
+            }
+
+        }
+        &-content{
+            background-color: #FEF5E0;
+            padding: 15px;
+        }
+    }
+    &__sp{
+        &-img{
+            width: 35px;
+            height: 35px;
+            margin-right: 15px;
+        }
+        &-txt{
+            font-size: 15px;
+            font-weight: bolder;
+            padding-right: 15px;
+            line-height: 1.5;
+        }
+    }
+
+}
+// start bangkok
+.bangkok{
+    background-image: url(../img/bg/bangkokbg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 80px;
+    color: $color-white;
+    line-height: 1.6;
+    @include tab{
+        padding: 40px;
+        line-height: 1.5;
+    }
+    @include sp{
+        background-image: url(../img/bg/bangkokbgsp.jpg);
+        padding: 20px 15px 40px;
+    }
+
+    &__ttl{
+        font-size: 24px;
+        margin: 20px 0;
+        font-weight: bolder;
+        @include sp{
+            text-align: center;
+        }
+    }
+    &__txt{
+        font-size: 14px;
+        margin-bottom: 20px;
+        @include sp{
+            font-size: 12px;
+        }
+    }
+    &__item{
+        font-size: 16px;
+        font-weight: bolder;
+        margin-bottom: 10px;
+        @include tab{
+            font-size: 14px;
+        }
+    }
+    &__btm{
+        font-size: 20px;
+        font-weight: bolder;
+        margin: 20px 0;
+        @include tab{
+            font-size: 16px;
+        }
+    }
+}
+// start gift
+.gift{
+    width: 100%;
+    background-color: #f7c23c;
+    padding: 40px ;
+    @include tab{
+        padding: 40px;
+    }
+    @include sp{
+        padding: 20px 10px;
+    }
+
+    &__top{
+        text-align: center;
+    }
+    &__ttl{
+        font-size: 28px;
+        line-height: 1.4;
+        color: $color-black;
+        font-weight: bolder;
+        margin:20px 0 40px;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            margin: 10px 0 20px;
+        }
+    }
+    &__txt{
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 138px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            font-size: 12px;
+            margin-bottom: 92px;
+
+        }
+        &-white{
+            color: $color-white;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+    }
+    &__box{
+        padding: 40px;
+        margin-top: 40px;
+        border: 2px solid $color-white;
+        @include sp{
+            padding: 30px 0 20px;
+            margin-top: 0;
+
+        }
+        &-wrap{
+            width: 55%;
+            margin: 0 auto;
+            margin-top: -70px;
+            margin-bottom: 10px;
+            background-color: #f7c23c;
+            // @include tab{
+            //     width: 55%;
+            // }
+            @include sp{
+                width: 250px;
+                margin-top: -70px;
+
+            }
+        }
+        &-ttl{
+            font-size: 28px;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bolder;
+            @include tab{
+                font-size: 24px;
+            }
+            @include sp{
+                font-size: 18px;
+            }
+        }
+    }
+    &__list{
+        display: flex;
+        justify-content: space-around;
+        // padding: 0 61px;
+        text-align: center;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        @include tab{
+            // flex-direction: column;
+            // align-items: center;
+        }
+        @include sp{
+            display: none;
+        }
+    }
+    &__item{
+        width: 250px;
+        height: 250px;
+        background-color: $color-white;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        &:nth-of-type(2){
+            margin: 0 15px;
+            // @include tab{
+            //     margin: 0;
+            // }
+        }
+        // @include tab{
+        //     margin: 15px 0;
+        // }
+        &-ttl{
+            font-size: 24px;
+            line-height: 1.6;
+            color: $color-yellow;
+            margin-bottom: 10px;
+        }
+        &-txt{
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: bolder;
+        }
+    }
+    &__sp{
+        &-list{
+            display: none;
+            @include sp{
+                display: block;
+                padding: 0 30px;
+            }
+        }
+        &-item{
+            display: flex;
+            align-items: center;
+            margin-bottom: 43px;
+            &-ttl{
+                font-size: 12px;
+                line-height: 60px;
+                color: $color-yellow;
+                margin-bottom: 10px;
+                background-color: $color-white;
+                min-width: 60px;
+                min-height: 60px;
+                border-radius: 50%;
+                text-align: center;
+                margin-right: 6%;
+            }
+            &-txt{
+                font-size: 12px;
+                line-height: 1.6;
+                font-weight: bolder;
+                color: $color-white;
+            }
+        }
+    }
+}
+// start specialdetail
+.specialdetail{
+    width: 100%;
+    background-image: url(../img/bg/specialdetail.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px 0;
+    @include tab{
+        padding: 40px;
+    }
+    @include sp{
+        background-image: url(../img/bg/specialdetailsp.jpg);
+        padding: 20px 10px 60px;
+    }
+
+    &__box{
+        color: $color-white;
+        text-align: center;
+    }
+    &__ttl{
+        font-size: 28px;
+        line-height: 1.6;
+        margin: 20px 0;
+        font-weight: bolder;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+
+    }
+    &__txt{
+        line-height: 1.6;
+        font-size: 20PX;
+        margin-bottom: 40px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 16px;
+        }
+        @include sp{
+            font-size: 12px;
+            margin: 0 auto 40px;
+        }
+        &-btm{
+            line-height: 1.6;
+            font-size: 20PX;
+            margin-bottom: 40px;
+            font-weight: bolder;
+            @include tab{
+                font-size: 16px;
+            }
+            @include sp{
+                display: none;
+            }
+        }
+        &-sp{
+            display: none;
+            @include sp{
+                display: inline;
+                line-height: 1.6;
+                font-size: 12PX;
+                margin-bottom: 40px;
+                font-weight: bolder;
+            }
+        }
+    }
+    &__point{
+        margin: 20px auto;
+        width: 70%;
+        font-size: 28px;
+        font-weight: bolder;
+        line-height: 1.5;
+        padding: 15px 0;
+        position: relative;
+        text-align: center;
+        color: $color-white;
+        @include tab{
+            width: 100%;
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            line-height: 2;
+            margin: 0px auto 20px;
+
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+                padding: 10px;
+
+            }
+        }
+
+        &::before, &::after{
+            content: '';
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            @include sp{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &::before{
+            border-left: solid 4px $color-white;
+            border-top: solid 4px $color-white;
+            top: 0;
+            left: 0;
+        }
+        &::after{
+            border-right: solid 4px $color-white;
+            border-bottom: solid 4px $color-white;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+// start msg
+.msg{
+    padding: 40px 0;
+    @include tab{
+        padding: 40px 20px;
+    }
+    @include sp(){
+        padding: 20px 10px;
+    }
+
+    &__top{
+        text-align: center;
+    }
+    &__ttl{
+        font-size: 28px;
+        line-height: 1.4;
+        margin: 20px 0 35px;
+        font-weight: bolder;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+        }
+    }
+    &__desc{
+        font-size: 20px;
+        line-height: 1.6;
+        font-weight: bolder;
+        @include tab{
+            font-size: 16px;
+        }
+        @include sp{
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        & br{
+            display: none;
+            @include sp{
+                display: inline;
+            }
+        }
+    }
+    &__box{
+        width: 70%;
+        display: flex;
+        margin: 40px auto 0;
+        @include tab{
+        }
+        @include sp{
+            width: 100%;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+    }
+    &__photo{
+        margin: 0 auto;
+    }
+    &__img{
+        max-width: 768px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 40px;
+        @include sp{
+            padding: 5px;
+            margin-bottom: 0;
+        }
+    }
+
+    &__wrap{
+        margin-left: 30px;
+        margin-bottom: 40px;
+        // @include tab{
+        //     margin: 0;
+        // }
+        @include sp{
+            padding: 5px;
+            margin: 0;
+        }
+    }
+    &__txt{
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        @include sp{
+            margin-bottom: 15px;
+            line-height: 1.7;
+
+
+        }
+    }
+}
+// start contact
+.contact {
+    width: 100%;
+    background: #EBB94D;
+    padding: 40px 0;
+    margin: 0 auto;
+    @include sp{
+        padding: 20px 15px 40px;
+    }
+    &__title {
+      font-size: 28px;
+      line-height: 1.4;
+      font-weight: bolder;
+      color: $color-black;
+      text-align: center;
+      margin: 20px 0;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+        }
+        &-catch {
+        font-size: 16px;
+        line-height: 1.6;
+        color: $color-black;
+        text-align: center;
+        margin-bottom: 38px;
+        font-weight: bolder;
+
+            @include tab{
+                font-size: 14px;
+                }
+                @include sp{
+                    font-size: 12px;
+                }
+            }
+    }
+    &__box {
+        max-width: 945px;
+        width: 70%;
+        margin: 0 auto;
+        @include sp{
+            max-width: initial;
+            width: 100%;
+
+        }
+    }
+    &__item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    &__label {
+        display: none;
+    }
+    &__text-input {
+        height: 55px;
+        padding: 10px;
+        margin-bottom: 25px;
+        border-radius: 5px;
+        background-color: $color-white;
+        font-weight: 1.5;
+        font-size: 14px;
+    }
+    &__textarea {
+        height: 100px;
+        padding: 10px;
+        margin: 25px 0;
+        border-radius: 5px;
+        background-color: $color-white;
+        font-weight: 1.5;
+        font-size: 14px;
+        @include sp{
+            margin: 15px 0 30px;
+
+        }
+    }
+    // 送信ボタン
+    &__submit{
+        &-wrapper{
+            text-align: center;
+            margin: 10px auto 30px;
+        }
+        &-link{
+            width: 100%;
+            transition: all 0.6s ease;
+            background-color: $color-red-btn;
+            border-radius: 50px;
+            display:block;
+            padding: 10px 80px;
+            border-radius: 50px;
+            color: $color-white;
+            font-size: 23px;
+            line-height: 1.6;
+            font-weight: bolder;
+            &:hover{
+                cursor: pointer;
+                background-color: $color-red-btn-hover;
+            }
+        }
+    }
+    // フォーム送信時に表示されるメッセージ
+    &__end-message {
+        display: none;
+        text-align: center;
+        color: $color-white;
+    }
+}
+
+  // 入力不完全の時ボタン押せないの状態
+  .button--disabled[disabled] {
+    opacity: 0.4;
+  }
+  //input 枠変化
+  input[type="text"]:focus,
+  input[type="email"]:focus,textarea:focus
+  {
+    border: solid 1px $color-red-btn-hover;    	/* 内側の線になる一本線の枠線をひく*/
+    box-shadow: 0 0 0 1px $color-white;
+}
+//   input[type="email"]:focus{
+//     border: 1px solid $color-black;
+//     outline: 0;
+//   }
+
+
+  // --------------------------------------------------------
+// jQuery Validation-Engine フォームバリデーション
+// --------------------------------------------------------
+.formError {
+  left: 66% !important;// jQueryのデフォルトの設定を上書き
+  margin-top: -25px ;
+  text-align: justify;
+  @include sp {
+      margin-top: -40px;
+      margin-left: -100px;
+  }
+}
+.yournameformError {
+  @include sp {
+      margin-top: -20px;
+      margin-left: -100px;
+
+  }
+}
+.contentformError {
+  @include sp {
+      margin-top: -20px;
+      left: 50% !important
+  }
+}
+.formError .formErrorContent {
+  background: $color-black;
+  color: white;
+  font-size: 13px;
+  filter: drop-shadow(5px 6px 8px gray);
+  border: none;
+  box-shadow: none;
+  padding: 8px 12px 6px;
+  border-radius: 4px;
+  line-height: 1.5;
+  @include sp {
+      padding: 5px;
+  }
+}
+// end jQuery Validation-Engine フォームバリデーション
+
+  // start faq accordion
+.faq {
+    padding: 40px;
+    @include sp{
+        padding: 20px 15px 40px;
+    }
+    &__ttl{
+        font-size: 28px;
+        line-height: 1.4;
+        font-weight: bolder;
+        color: $color-black;
+        text-align: center;
+        margin: 20px 0 40px;
+        @include tab{
+            font-size: 24px;
+        }
+        @include sp{
+            font-size: 18px;
+            margin: 20px 0;
+            line-height: 2;
+
+        }
+    }
+    &__accordion {
+      &-container {
+        width: 82.2%;
+        margin: 0 auto;
+        @include tab{
+            width: 92%;
+        }
+        @include sp{
+            width: 100%;
+        }
+      }
+      &-container &-title {
+        position: relative;
+        margin: 0;
+        cursor: pointer;
+        padding: 20px;
+        margin-bottom: 8px;
+        // box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .05);
+        @include sp{
+            padding: 10px 34px 10px 10px;
+            margin-bottom: 5px;
+
+        }
+
+        // icon設定
+        &::after {
+          content: "";
+          position: absolute;
+          right: 25px;
+          top: 38%;
+          transition: all 0.2s ease-in-out;
+          display: block;
+          width: 14px;
+          height: 14px;
+          border-top: solid 5px #e5e5e5;
+          border-right: solid 5px #e5e5e5;
+          -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+          @include sp{
+            width: 12px;
+            height: 12px;
+          }
+        }
+        &.open::after {
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            top: 45%;
+        }
+      }
+      &-title {
+        font-size: 20px;
+        font-weight: bolder;
+        line-height: 1.1;
+        color: $color-black;
+        border: 1px solid #e5e5e5;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        @include tab{
+            font-size: 16px;
+            line-height: 1.3;
+        }
+        @include sp{
+            font-size: 15px;
+        }
+        &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+      }
+      /*CSS for CodePen*/
+      &-content {
+        font-size: 16px;
+        font-weight: bolder;
+        line-height: 1.6;
+        padding: 20px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #e5e5e5;
+        @include tab{
+            font-size: 14px;
+        }
+        @include sp{
+            font-size: 12px;
+        }
+        }
+    }
+  }
+  .fa-question-circle{
+      font-size: 18px;
+    color: $color-blue;
+  }
+    // end faq accordion
+    // start footer
+    .footer{
+        background-color: #ECECEC;
+        padding: 40px 15px 20px 15px;
+        text-align: center;
+        @include sp{
+            padding: 20px 15px 20px 20px;
+
+        }
+        &__small{
+            font-size: 10px;
+            line-height: 1.6;
+        }
+        &__txt{
+            font-size: 10px;
+            margin-top: 40px;
+        }
+        &__blue{
+            color: $color-blue;
+            &:hover{
+                cursor: pointer;
+                text-decoration: underline;
+                color: #23527C;
+            }
+        }
+    }
+/* --------------------------------------------------------
+  jQuery
+  -------------------------------------------------------- */
+
+// jQuery スムーススクロール トップへ戻る
+#js-scroll-top {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 99;
+    @include tab{
+        right: 10px;
+    }
+    @include sp{
+        bottom: 25px;
+    }
+  }
+    .js-scroll-top__link {
+    // opacity: 0;
+    font-size: 35px;
+    // width: 72px;
+    // height: 72px;
+    padding: 15px 25px;
+    background-color: #ececec;
+    // border-radius: 4px;
+    @include sp{
+        font-size: 24px;
+        padding: 15px;
+    }
+  }
+    .fa-angle-double-up {
+        color: $color-white;
+    }
+  // end jQuery スムーススクロール トップへ戻る
